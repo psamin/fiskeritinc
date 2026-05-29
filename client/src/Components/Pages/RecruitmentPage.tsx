@@ -122,7 +122,13 @@ const RecruitmentPage: FC = () => {
             We connect top talent to cutting-edge opportunities in IT and beyond.<br />Shape the future with industry-leading companies.
           </p>
           <button
-            onClick={() => document.getElementById('application-form')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => {
+              const el = document.getElementById('application-form');
+              if (el) {
+                const top = el.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top, behavior: 'smooth' });
+              }
+            }}
             style={{ background: 'white', color: '#FF6B35', padding: '0.75rem 2rem', fontSize: 'clamp(1rem, 2vw, 1.125rem)', fontWeight: 600, border: 'none', borderRadius: '0.5rem', cursor: 'pointer', boxShadow: '0 4px 15px rgba(255, 107, 53, 0.3)', transition: 'all 0.2s ease' }}
             onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 107, 53, 0.4)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 107, 53, 0.3)'; }}
